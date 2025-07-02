@@ -17,6 +17,7 @@
       color: #333;
       min-height: 100vh;
       overflow-x: hidden;
+      max-width: 1000px;
     }
 
     header {
@@ -79,6 +80,7 @@
       background: rgba(255, 255, 255, 0.7);
       overflow: hidden;
       box-shadow: 0 20px 60px rgba(0,0,0,0.05);
+      gap: 15px;
     }
 
     .gallery-img {
@@ -207,7 +209,7 @@
     const placedRects = [];
 
     images.forEach(img => {
-      let w = randomRange(200, 400);
+      let w = randomRange(250, 350);
       let h = w * randomRange(0.6, 0.75);
       let tries = 0;
       let left, top;
