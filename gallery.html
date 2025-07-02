@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Галерея — Велика</title>
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Comic Sans MS', cursive, sans-serif;
+      background: linear-gradient(120deg, #fff0f5, #fdfbfb);
+      color: #333;
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    header {
+      background: rgba(255, 105, 180, 0.9);
+      padding: 15px 40px;
+      position: sticky;
+      top: 0;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      z-index: 999;
+      box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+    }
+
+    .logo {
+      font-weight: bold;
+      font-size: 1.8rem;
+      color: #fff;
+    }
+
+    .menu a {
+      color: #fff;
+      text-decoration: none;
+      font-size: 1.2rem;
+      margin-left: 25px;
+      transition: color 0.3s ease;
+    }
+
+    .menu a:hover {
+      color: #ffe4e1;
+    }
+
+    main {
+      max-width: 1600px;
+      margin: 60px auto;
+      padding: 0 15px;
+      text-align: center;
+    }
+
+    h1 {
+      font-size: 3.2rem;
+      color: #d6336c;
+      margin-bottom: 10px;
+    }
+
+    p {
+      font-size: 1.3rem;
+      margin-top: 0;
+      margin-bottom: 40px;
+      color: #555;
+    }
+
+    .gallery {
+      position: relative;
+      width: 100%;
+      height: 2000px;
+      margin: 0 auto;
+      border: 3px dashed #ffd6e0;
+      border-radius: 30px;
+      background: rgba(255, 255, 255, 0.7);
+      overflow: hidden;
+      box-shadow: 0 20px 60px rgba(0,0,0,0.05);
+    }
+
+    .gallery-img {
+      position: absolute;
+      border-radius: 40px;
+      box-shadow: 0 10px 40px rgba(0, 0, 0, 0.15);
+      cursor: pointer;
+      transition: transform 0.4s ease, box-shadow 0.4s ease;
+      object-fit: cover;
+      user-select: none;
+      opacity: 0;
+      animation: fadeIn 0.8s forwards;
+    }
+
+    .gallery-img:hover {
+      transform: scale(1.15) translateY(-10px);
+      box-shadow: 0 25px 60px rgba(255, 105, 180, 0.7);
+      z-index: 20;
+    }
+
+    @keyframes fadeIn {
+      to {
+        opacity: 1;
+      }
+    }
+
+    .lightbox {
+      position: fixed;
+      top: 0; left: 0; width: 100%; height: 100%;
+      background: rgba(0, 0, 0, 0.85);
+      display: none;
+      justify-content: center;
+      align-items: center;
+      z-index: 10000;
+    }
+
+    .lightbox.active {
+      display: flex;
+    }
+
+    .lightbox img {
+      max-width: 90%;
+      max-height: 80%;
+      border-radius: 20px;
+      box-shadow: 0 0 40px rgba(255, 105, 180, 0.8);
+    }
+
+    .close-btn {
+      position: fixed;
+      top: 25px;
+      right: 30px;
+      font-size: 3rem;
+      color: #fff;
+      background: transparent;
+      border: none;
+      cursor: pointer;
+      user-select: none;
+    }
+
+    .close-btn:hover {
+      color: #ff7aad;
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <div class="logo">📸 Велика Галерея</div>
+  <nav class="menu">
+    <a href="index.html">Головна</a>
+  </nav>
+</header>
+
+<main>
+  <section>
+    <h1>Наші найкращі спогади</h1>
+    <p>Найрідніші миті, що назавжди залишаються в серці.</p>
+
+    <div class="gallery" id="gallery">
+      <!-- ВСТАВЛЕНІ ФОТО -->
+      <img src="img/photo_2025-07-02_15-19-29.jpg" alt="Фото 1" class="gallery-img" />
+      <img src="img/photo_2025-07-02_15-19-37.jpg" alt="Фото 2" class="gallery-img" />
+      <img src="img/photo_2025-07-02_15-19-41.jpg" alt="Фото 3" class="gallery-img" />
+      <img src="img/photo_2025-07-02_15-19-45.jpg" alt="Фото 4" class="gallery-img" />
+      <img src="img/photo_2025-07-02_15-19-52.jpg" alt="Фото 5" class="gallery-img" />
+      <img src="img/photo_2025-07-02_15-22-13.jpg" alt="Фото 6" class="gallery-img" />
+      <img src="img/photo_2025-07-02_16-15-05.jpg" alt="Фото 7" class="gallery-img" />
+      <img src="img/photo_2025-07-02_16-15-16.jpg" alt="Фото 8" class="gallery-img" />
+      <img src="img/photo_2025-07-02_16-15-21.jpg" alt="Фото 9" class="gallery-img" />
+      <img src="img/photo_2025-07-02_16-15-24.jpg" alt="Фото 10" class="gallery-img" />
+      <img src="img/photo_2025-07-02_16-15-27.jpg" alt="Фото 11" class="gallery-img" />
+      <img src="img/photo_2025-07-02_16-15-31.jpg" alt="Фото 12" class="gallery-img" />
+      <img src="img/photo_2025-07-02_16-15-34.jpg" alt="Фото 13" class="gallery-img" />
+    </div>
+  </section>
+</main>
+
+<div class="lightbox" id="lightbox">
+  <img src="" alt="Збільшене фото" />
+  <button class="close-btn" id="closeBtn">&times;</button>
+</div>
+
+<script>
+  const gallery = document.getElementById('gallery');
+  const images = gallery.querySelectorAll('.gallery-img');
+  const lightbox = document.getElementById('lightbox');
+  const lightboxImg = lightbox.querySelector('img');
+  const closeBtn = document.getElementById('closeBtn');
+
+  function randomRange(min, max) {
+    return Math.random() * (max - min) + min;
+  }
+
+  function isOverlapping(rect1, rect2, margin = 40) {
+    return !(
+      rect1.right + margin < rect2.left - margin ||
+      rect1.left - margin > rect2.right + margin ||
+      rect1.bottom + margin < rect2.top - margin ||
+      rect1.top - margin > rect2.bottom + margin
+    );
+  }
+
+  function positionImages() {
+    const galleryWidth = gallery.clientWidth;
+    const galleryHeight = gallery.clientHeight;
+    const placedRects = [];
+
+    images.forEach(img => {
+      let w = randomRange(500, 900);
+      let h = w * randomRange(0.6, 0.75);
+      let tries = 0;
+      let left, top;
+      let rect;
+
+      do {
+        left = randomRange(0, galleryWidth - w);
+        top = randomRange(0, galleryHeight - h);
+        rect = { left, top, right: left + w, bottom: top + h };
+        tries++;
+      } while (placedRects.some(r => isOverlapping(r, rect)) && tries < 20);
+
+      placedRects.push(rect);
+
+      const rotate = randomRange(-4, 4);
+      img.style.width = w + 'px';
+      img.style.height = h + 'px';
+      img.style.left = left + 'px';
+      img.style.top = top + 'px';
+      img.style.transform = `rotate(${rotate}deg)`;
+      img.style.opacity = '1';
+    });
+  }
+
+  window.addEventListener('load', positionImages);
+  window.addEventListener('resize', positionImages);
+
+  images.forEach(img => {
+    img.addEventListener('click', () => {
+      lightboxImg.src = img.src;
+      lightbox.classList.add('active');
+    });
+
+    img.addEventListener('mousemove', e => {
+      const rect = img.getBoundingClientRect();
+      const x = e.clientX - rect.left - rect.width / 2;
+      const y = e.clientY - rect.top - rect.height / 2;
+      const rotateX = (-y / rect.height) * 5;
+      const rotateY = (x / rect.width) * 5;
+      const match = img.style.transform.match(/rotate\((-?\d+\.?\d*)deg\)/);
+      const baseRotate = match ? parseFloat(match[1]) : 0;
+      img.style.transform = `rotate(${baseRotate}deg) scale(1.12) rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
+    });
+
+    img.addEventListener('mouseleave', () => {
+      const match = img.style.transform.match(/rotate\((-?\d+\.?\d*)deg\)/);
+      const baseRotate = match ? parseFloat(match[1]) : 0;
+      img.style.transform = `rotate(${baseRotate}deg)`;
+    });
+  });
+
+  closeBtn.addEventListener('click', () => {
+    lightbox.classList.remove('active');
+  });
+
+  lightbox.addEventListener('click', e => {
+    if (e.target === lightbox) {
+      lightbox.classList.remove('active');
+    }
+  });
+</script>
+
+</body>
+</html>

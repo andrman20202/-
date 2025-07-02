@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Мама</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header>
+    <div class="logo">👩 Моя мама</div>
+    <nav class="menu">
+      <a href="index.html">Головна</a>
+      <a href="gallery.html">Галерея</a>
+    </nav>
+  </header>
+
+  <main>
+    <div class="content">
+      <h1>Мама — найдорожча людина</h1>
+      <p>Моя мама — це серце нашої родини. Вона дарує любов, турботу та тепло щодня.</p>
+      <p>Її обійми — найнадійніше місце в світі. Її усмішка — моє сонце. Я завжди вдячний мамі за все, що вона робить для нас.</p>
+    </div>
+  </main>
+
+  <script src="script.js"></script>
+
+  <!DOCTYPE html>
+<html lang="uk">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Тест анимации сердечек</title>
+  <style>
+    body {
+      margin: 0;
+      height: 100vh;
+      background: linear-gradient(to right, #ffe0e9, #fad0c4);
+      overflow-x: hidden;
+      position: relative;
+      font-family: 'Comic Sans MS', cursive, sans-serif;
+    }
+
+    .floating-heart {
+      position: fixed;          /* Очень важно: fixed, чтобы позиционировались относительно окна */
+      top: 100%;                /* Начинаем снизу */
+      left: var(--left);        /* Горизонтальная позиция из CSS переменной */
+      font-size: var(--size);
+      opacity: 0;
+      pointer-events: none;
+      user-select: none;
+      animation-name: floatUp;
+      animation-duration: var(--duration);
+      animation-timing-function: ease-out;
+      animation-fill-mode: forwards;
+      transform-origin: center center;
+      z-index: 0;
+      will-change: transform, opacity;
+    }
+
+    @keyframes floatUp {
+      0% {
+        top: 100%;
+        opacity: 0;
+        transform: translateX(0) rotate(0deg);
+      }
+      10% {
+        opacity: 0.8;
+      }
+      100% {
+        top: -10%;
+        opacity: 0;
+        transform: translateX(var(--x-move)) rotate(var(--rotate));
+      }
+    }
+  </style>
+</head>
+<body>
+
+<script>
+  const hearts = ['💖', '💗', '💞', '💕', '💝'];
+
+  function spawnHeart() {
+    const heart = document.createElement('span');
+    heart.classList.add('floating-heart');
+    heart.textContent = hearts[Math.floor(Math.random() * hearts.length)];
+
+    const size = (Math.random() * 1.5 + 1.5).toFixed(2) + 'em';
+    heart.style.setProperty('--size', size);
+
+    const left = (Math.random() * 90 + 5).toFixed(2) + 'vw';  // От 5vw до 95vw
+    heart.style.setProperty('--left', left);
+
+    const xMove = (Math.random() * 100 - 50).toFixed(2) + 'px';
+    heart.style.setProperty('--x-move', xMove);
+
+    const rotate = (Math.random() * 720 - 360).toFixed(2) + 'deg';
+    heart.style.setProperty('--rotate', rotate);
+
+    const duration = (Math.random() * 7 + 8).toFixed(2) + 's';
+    heart.style.setProperty('--duration', duration);
+
+    document.body.appendChild(heart);
+
+    heart.addEventListener('animationend', () => {
+      heart.remove();
+    });
+  }
+
+  setInterval(spawnHeart, 600);
+</script>
+
+</body>
+</html>
